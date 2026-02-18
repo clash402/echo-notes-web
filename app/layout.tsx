@@ -1,10 +1,21 @@
 import type { Metadata } from 'next'
+import { Manrope, Newsreader } from 'next/font/google'
 import './globals.css'
 import { Providers } from './providers'
 
+const manrope = Manrope({
+  subsets: ['latin'],
+  variable: '--font-manrope',
+})
+
+const newsreader = Newsreader({
+  subsets: ['latin'],
+  variable: '--font-newsreader',
+})
+
 export const metadata: Metadata = {
   title: 'Echo Notes',
-  description: 'Echo Notes Web Application',
+  description: 'Voice-first reflective note taking for Echo Notes.',
 }
 
 export default function RootLayout({
@@ -14,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${manrope.variable} ${newsreader.variable} min-h-screen bg-background text-foreground antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

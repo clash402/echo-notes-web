@@ -15,6 +15,10 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-manrope)", "ui-sans-serif", "system-ui"],
+        serif: ["var(--font-newsreader)", "ui-serif", "Georgia"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -73,4 +77,3 @@ module.exports = {
   },
   plugins: [require("tailwindcss-animate")],
 }
-
