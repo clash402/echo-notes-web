@@ -19,7 +19,7 @@ jobs:
       image: node:20-bookworm
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install dependencies
         run: npm ci
@@ -46,7 +46,7 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.58.2-jammy
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install dependencies
         run: npm ci
@@ -61,7 +61,7 @@ jobs:
       image: node:20-bookworm
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install dependencies
         run: npm ci
@@ -74,7 +74,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Build CI image
         if: ${{ hashFiles('Dockerfile') != '' }}
