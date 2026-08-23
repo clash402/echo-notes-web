@@ -16,7 +16,7 @@ jobs:
     name: quality-and-tests
     runs-on: ubuntu-latest
     container:
-      image: node:20-bookworm
+      image: node:24-bookworm
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -58,7 +58,7 @@ jobs:
     name: security-dependencies
     runs-on: ubuntu-latest
     container:
-      image: node:20-bookworm
+      image: node:24-bookworm
     steps:
       - name: Checkout
         uses: actions/checkout@v5
