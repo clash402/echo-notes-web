@@ -78,7 +78,7 @@ jobs:
 
       - name: Build CI image
         if: ${{ hashFiles('Dockerfile') != '' }}
-        run: docker build -f Dockerfile -t echo-notes-web:ci .
+        run: docker build --pull -f Dockerfile -t echo-notes-web:ci .
 
       - name: Scan image with Trivy (HIGH/CRITICAL)
         if: ${{ hashFiles('Dockerfile') != '' }}
@@ -86,7 +86,7 @@ jobs:
           docker run --rm \
             -v /var/run/docker.sock:/var/run/docker.sock \
             -v "$HOME/.cache:/root/.cache/" \
-            aquasec/trivy:0.58.1 image \
+            aquasec/trivy:0.74.0 image \
             --severity HIGH,CRITICAL \
             --exit-code 1 \
             --ignore-unfixed \
