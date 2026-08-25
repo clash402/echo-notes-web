@@ -1,4 +1,4 @@
-import { FiFileText } from 'react-icons/fi'
+import { FileText } from 'lucide-react'
 import {
   Card,
   CardContent,
@@ -25,10 +25,10 @@ export function TranscriptPanel({
     <Card className="h-full">
       <CardHeader>
         <CardDescription className="flex items-center gap-2">
-          <FiFileText className="h-4 w-4" />
+          <FileText className="h-4 w-4" strokeWidth={1.75} />
           Transcript
         </CardDescription>
-        <CardTitle className="text-xl">What you said</CardTitle>
+        <CardTitle className="text-xl">Captured transcript</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {loading ? (

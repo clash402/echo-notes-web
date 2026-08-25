@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-product="echo-notes">
       <body className={`${manrope.variable} ${newsreader.variable} min-h-screen bg-background text-foreground antialiased`}>
         <Providers>{children}</Providers>
       </body>

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useMemo } from 'react'
 import { useParams } from 'next/navigation'
 import { useQuery } from '@tanstack/react-query'
-import { FiArrowLeft, FiMic } from 'react-icons/fi'
+import { ArrowLeft, Link2, Mic } from 'lucide-react'
 import { AudioPlayer } from '@/components/audio/audio-player'
 import { MainNav } from '@/components/navigation/main-nav'
 import { ReflectionPanel } from '@/components/reflection/reflection-panel'
@@ -57,8 +57,8 @@ export default function NoteDetailPage() {
     <div className="pb-14">
       <MainNav current="detail" />
 
-      <main className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 sm:px-8">
-        <section className="flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-border/70 bg-white/75 px-6 py-5 shadow-sm backdrop-blur sm:px-8">
+      <main className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <section className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-8">
           <div>
             <h1 className="font-serif text-3xl leading-tight text-foreground sm:text-4xl">
               {noteQuery.data?.title || 'Note detail'}
@@ -74,11 +74,11 @@ export default function NoteDetailPage() {
               href="/notes"
               className={cn(buttonVariants({ variant: 'outline' }), 'h-10 px-4')}
             >
-              <FiArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="h-4 w-4" />
               Back to notes
             </Link>
             <Link href="/" className={cn(buttonVariants({ size: 'default' }), 'h-10 px-4')}>
-              <FiMic className="h-4 w-4" />
+              <Mic className="h-4 w-4" />
               Capture
             </Link>
           </div>
@@ -152,15 +152,15 @@ export default function NoteDetailPage() {
               {noteQuery.data.linkedNotes.length > 0 && (
                 <Card>
                   <CardHeader>
-                    <CardDescription>Context</CardDescription>
-                    <CardTitle className="text-xl">Linked notes</CardTitle>
+                    <CardDescription className="flex items-center gap-2"><Link2 className="h-4 w-4" />Context</CardDescription>
+                    <CardTitle className="text-xl">Related notes</CardTitle>
                   </CardHeader>
                   <CardContent className="space-y-2">
                     {noteQuery.data.linkedNotes.map((linkedNote) => (
                       <Link
                         key={linkedNote.id}
                         href={`/notes/${linkedNote.id}`}
-                        className="flex items-center justify-between rounded-2xl border border-border/70 bg-background/70 px-3 py-2 text-sm transition hover:border-emerald-300"
+                        className="flex items-center justify-between rounded-xl border border-border bg-secondary/60 px-3 py-2 text-sm transition hover:border-primary/40 hover:bg-accent/30"
                       >
                         <span>{linkedNote.title}</span>
                         <span className="text-xs text-muted-foreground">Open</span>
@@ -194,7 +194,7 @@ export default function NoteDetailPage() {
         ) : null}
 
         {!noteQuery.isLoading && !noteQuery.data && !noteError && (
-          <section className="rounded-3xl border border-border/70 bg-white/70 px-6 py-8 text-center shadow-sm">
+          <section className="rounded-2xl border border-border bg-card px-6 py-8 text-center">
             <h2 className="font-serif text-2xl">Note unavailable</h2>
             <p className="mt-2 text-sm text-muted-foreground">
               This note may have been removed or is still syncing.
