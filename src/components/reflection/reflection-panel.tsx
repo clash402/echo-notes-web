@@ -1,4 +1,4 @@
-import { FiLayers } from 'react-icons/fi'
+import { Layers3 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import {
   Card,
@@ -38,7 +38,7 @@ const ReflectionList = ({
     <ul className="space-y-2 text-sm leading-relaxed text-foreground/90">
       {items.map((item) => (
         <li key={item} className="flex gap-2">
-          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600" />
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
           <span>{item}</span>
         </li>
       ))}
@@ -56,11 +56,11 @@ export function ReflectionPanel({
     <Card className="h-full">
       <CardHeader className="space-y-3">
         <CardDescription className="flex items-center gap-2">
-          <FiLayers className="h-4 w-4" />
-          Echo Reflection
+          <Layers3 className="h-4 w-4" strokeWidth={1.75} />
+          Structured reflection
         </CardDescription>
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <CardTitle className="text-xl">{title || 'Your thinking mirror'}</CardTitle>
+          <CardTitle className="text-xl">{title || 'Review and preserve'}</CardTitle>
           {confidence && (
             <Badge variant="muted" className="font-normal">
               {confidenceLabel[confidence]}
@@ -79,14 +79,14 @@ export function ReflectionPanel({
         ) : (
           <>
             <section className="space-y-2">
-              <h4 className="text-sm font-medium text-foreground/80">What you were saying</h4>
+              <h4 className="text-sm font-semibold text-foreground/80">Summary</h4>
               <p className="text-sm leading-relaxed text-foreground/90">
                 {reflection?.summary || 'Reflection will appear after transcription completes.'}
               </p>
             </section>
 
             <section className="space-y-2">
-              <h4 className="text-sm font-medium text-foreground/80">What seems important</h4>
+              <h4 className="text-sm font-semibold text-foreground/80">Themes</h4>
               <ReflectionList
                 items={reflection?.themes ?? []}
                 emptyLabel="No clear themes yet."
@@ -94,9 +94,7 @@ export function ReflectionPanel({
             </section>
 
             <section className="space-y-2">
-              <h4 className="text-sm font-medium text-foreground/80">
-                Open questions / tensions
-              </h4>
+              <h4 className="text-sm font-semibold text-foreground/80">Open questions</h4>
               <ReflectionList
                 items={reflection?.questions ?? []}
                 emptyLabel="No open tensions identified."
@@ -104,7 +102,7 @@ export function ReflectionPanel({
             </section>
 
             <section className="space-y-2">
-              <h4 className="text-sm font-medium text-foreground/80">Possible next thoughts</h4>
+              <h4 className="text-sm font-semibold text-foreground/80">Possible next steps</h4>
               <ReflectionList
                 items={reflection?.next_thoughts ?? []}
                 emptyLabel="No next thoughts suggested yet."

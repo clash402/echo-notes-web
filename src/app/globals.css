@@ -4,26 +4,41 @@
 
 @layer base {
   :root {
-    --background: 165 35% 97%;
-    --foreground: 186 30% 14%;
-    --card: 0 0% 100%;
-    --card-foreground: 186 30% 14%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 186 30% 14%;
-    --primary: 184 58% 30%;
-    --primary-foreground: 180 29% 96%;
-    --secondary: 178 30% 92%;
-    --secondary-foreground: 186 28% 22%;
-    --muted: 171 22% 93%;
-    --muted-foreground: 187 12% 43%;
-    --accent: 173 45% 88%;
-    --accent-foreground: 187 30% 20%;
-    --destructive: 6 75% 48%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 174 18% 84%;
-    --input: 174 16% 86%;
-    --ring: 184 58% 38%;
-    --radius: 0.9rem;
+    --ghost-ink: 206 55% 11%;
+    --ghost-slate: 206 19% 41%;
+    --ghost-steel: 223 10% 65%;
+    --ghost-blush: 4 73% 93%;
+    --ghost-sand: 24 50% 79%;
+    --ghost-canvas: 48 24% 96%;
+    --ghost-surface: 40 100% 99%;
+    --ghost-surface-muted: 210 7% 95%;
+    --ghost-border: 210 11% 86%;
+    --product-accent: 9 41% 43%;
+    --status-info: 211 54% 40%;
+    --status-success: 152 48% 30%;
+    --status-warning: 37 76% 33%;
+    --status-danger: 0 51% 46%;
+    --status-blocked: 259 22% 46%;
+    --background: var(--ghost-canvas);
+    --foreground: var(--ghost-ink);
+    --card: var(--ghost-surface);
+    --card-foreground: var(--ghost-ink);
+    --popover: var(--ghost-surface);
+    --popover-foreground: var(--ghost-ink);
+    --primary: var(--product-accent);
+    --primary-foreground: 0 0% 100%;
+    --secondary: var(--ghost-surface-muted);
+    --secondary-foreground: var(--ghost-ink);
+    --muted: var(--ghost-surface-muted);
+    --muted-foreground: var(--ghost-slate);
+    --accent: var(--ghost-blush);
+    --accent-foreground: var(--ghost-ink);
+    --destructive: var(--status-danger);
+    --destructive-foreground: 0 0% 100%;
+    --border: var(--ghost-border);
+    --input: var(--ghost-border);
+    --ring: var(--product-accent);
+    --radius: 0.75rem;
   }
 
   * {
@@ -36,10 +51,14 @@
   }
 
   body {
-    background:
-      radial-gradient(circle at 12% 15%, rgba(44, 182, 125, 0.18), transparent 40%),
-      radial-gradient(circle at 90% 10%, rgba(23, 138, 145, 0.18), transparent 38%),
-      linear-gradient(180deg, #f4fbfa 0%, #eff8f8 45%, #f6fbf8 100%);
+    @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(circle at 8% -10%, hsl(var(--ghost-sand) / 0.38), transparent 28rem),
+      radial-gradient(circle at 94% 12%, hsl(var(--ghost-blush) / 0.6), transparent 32rem);
+  }
+
+  ::selection {
+    background: hsl(var(--product-accent) / 0.16);
   }
 }
 

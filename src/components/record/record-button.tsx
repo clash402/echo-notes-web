@@ -1,4 +1,4 @@
-import { FiMic, FiSquare } from 'react-icons/fi'
+import { Mic, Square } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 type RecordButtonProps = {
@@ -19,20 +19,19 @@ export function RecordButton({
       disabled={disabled}
       aria-label={isRecording ? 'Stop recording' : 'Start recording'}
       className={cn(
-        'group relative grid h-44 w-44 place-items-center rounded-full border border-white/40 text-white shadow-[0_20px_70px_-25px_rgba(17,94,89,0.75)] transition duration-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-200/70 disabled:cursor-not-allowed disabled:opacity-55 sm:h-56 sm:w-56',
+        'group relative grid h-36 w-36 place-items-center rounded-full border-8 border-card text-white shadow-[0_18px_48px_-24px_rgba(13,31,45,0.55)] transition duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/25 disabled:cursor-not-allowed disabled:opacity-55 sm:h-40 sm:w-40',
         isRecording
-          ? 'bg-rose-500 hover:bg-rose-600'
-          : 'bg-gradient-to-br from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700'
+          ? 'bg-status-danger hover:bg-status-danger/90'
+          : 'bg-primary hover:bg-primary/90'
       )}
     >
-      <span className="absolute inset-0 rounded-full bg-white/20 blur-2xl transition group-hover:opacity-90" />
       <span className="relative z-10 flex flex-col items-center gap-2 text-center">
         {isRecording ? (
-          <FiSquare className="h-9 w-9" />
+          <Square className="h-7 w-7" strokeWidth={1.75} />
         ) : (
-          <FiMic className="h-10 w-10" />
+          <Mic className="h-8 w-8" strokeWidth={1.75} />
         )}
-        <span className="text-sm font-semibold tracking-[0.08em]">
+        <span className="text-xs font-semibold uppercase tracking-[0.14em]">
           {isRecording ? 'STOP' : 'RECORD'}
         </span>
       </span>

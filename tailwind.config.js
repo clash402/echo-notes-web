@@ -53,6 +53,20 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        ghost: {
+          ink: "hsl(var(--ghost-ink))",
+          slate: "hsl(var(--ghost-slate))",
+          steel: "hsl(var(--ghost-steel))",
+          blush: "hsl(var(--ghost-blush))",
+          sand: "hsl(var(--ghost-sand))",
+        },
+        status: {
+          info: "hsl(var(--status-info))",
+          success: "hsl(var(--status-success))",
+          warning: "hsl(var(--status-warning))",
+          danger: "hsl(var(--status-danger))",
+          blocked: "hsl(var(--status-blocked))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

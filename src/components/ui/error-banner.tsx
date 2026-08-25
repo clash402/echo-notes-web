@@ -1,4 +1,4 @@
-import { FiAlertCircle } from 'react-icons/fi'
+import { AlertCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 type ErrorBannerProps = {
@@ -15,17 +15,17 @@ export function ErrorBanner({
   return (
     <div
       className={cn(
-        'rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900',
+        'rounded-xl border border-status-danger/25 bg-status-danger/5 px-4 py-3 text-sm text-status-danger',
         className
       )}
       role="alert"
     >
       <p className="flex items-start gap-2 font-medium">
-        <FiAlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+        <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" strokeWidth={1.75} />
         <span>{message}</span>
       </p>
       {requestId && (
-        <p className="mt-1 text-xs text-red-800/80">Request ID: {requestId}</p>
+        <p className="mt-1 font-mono text-xs text-status-danger/80">Request ID: {requestId}</p>
       )}
     </div>
   )

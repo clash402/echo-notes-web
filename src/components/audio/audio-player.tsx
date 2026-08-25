@@ -7,7 +7,7 @@ export function AudioPlayer({ src }: AudioPlayerProps) {
     <audio
       controls
       preload="metadata"
-      className="w-full rounded-2xl border border-border/70 bg-background/70 p-2"
+      className="w-full rounded-xl border border-border bg-secondary p-2"
     >
       <source src={src} />
       Your browser does not support audio playback.

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useQuery } from '@tanstack/react-query'
-import { FiMic } from 'react-icons/fi'
+import { Archive, Mic } from 'lucide-react'
 import { MainNav } from '@/components/navigation/main-nav'
 import { NoteTimelineItem } from '@/components/notes/note-timeline-item'
 import { buttonVariants } from '@/components/ui/button'
@@ -34,11 +34,12 @@ export default function NotesPage() {
     <div className="pb-14">
       <MainNav current="notes" />
 
-      <main className="mx-auto flex w-full max-w-4xl flex-col gap-6 px-4 sm:px-8">
-        <section className="rounded-3xl border border-border/70 bg-white/75 px-6 py-7 shadow-sm backdrop-blur sm:px-8">
-          <h1 className="font-serif text-4xl">Your timeline</h1>
-          <p className="mt-2 text-sm text-muted-foreground sm:text-base">
-            Revisit reflections in reverse chronological order.
+      <main className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <section className="border-b border-border pb-8">
+          <p className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary"><Archive className="h-4 w-4" />Knowledge history</p>
+          <h1 className="font-serif text-4xl tracking-[-0.025em] sm:text-5xl">Notes worth returning to.</h1>
+          <p className="mt-3 max-w-xl text-[15px] leading-6 text-muted-foreground">
+            Review captured reasoning and follow the relationships between prior thoughts.
           </p>
         </section>
 
@@ -58,7 +59,7 @@ export default function NotesPage() {
         ) : null}
 
         {notesQuery.data && notesQuery.data.length > 0 ? (
-          <section className="grid gap-4">
+          <section className="grid gap-4 lg:grid-cols-2">
             {notesQuery.data.map((note) => (
               <NoteTimelineItem key={note.id} note={note} />
             ))}
@@ -66,8 +67,8 @@ export default function NotesPage() {
         ) : null}
 
         {notesQuery.data && notesQuery.data.length === 0 && !notesError ? (
-          <section className="rounded-3xl border border-dashed border-border bg-white/65 px-6 py-10 text-center">
-            <h2 className="font-serif text-2xl">No notes yet</h2>
+          <section className="rounded-2xl border border-dashed border-border bg-card px-6 py-10 text-center">
+            <h2 className="font-serif text-2xl">Your knowledge history is empty</h2>
             <p className="mt-2 text-sm text-muted-foreground">
               Capture your first thought to begin your timeline.
             </p>
@@ -75,7 +76,7 @@ export default function NotesPage() {
               href="/"
               className={cn(buttonVariants(), 'mt-5 inline-flex h-10 px-4')}
             >
-              <FiMic className="h-4 w-4" />
+              <Mic className="h-4 w-4" />
               Start recording
             </Link>
           </section>

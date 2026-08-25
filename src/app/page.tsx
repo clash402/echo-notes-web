@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import { FiLoader, FiRefreshCw, FiSave, FiTrash2 } from 'react-icons/fi'
+import { Archive, LoaderCircle, RefreshCw, ShieldCheck, Trash2 } from 'lucide-react'
 import { AudioPlayer } from '@/components/audio/audio-player'
 import { MainNav } from '@/components/navigation/main-nav'
 import {
@@ -207,30 +207,30 @@ export default function CapturePage() {
 
   const statusLabel = useMemo(() => {
     if (isRecording) {
-      return 'Listening...'
+      return 'Recording in progress…'
     }
 
     if (transcribeMutation.isPending) {
-      return 'Listening complete. Transcribing...'
+      return 'Recording complete. Transcribing…'
     }
 
     if (echoMutation.isPending) {
-      return 'Reflecting on your thought...'
+      return 'Structuring the reflection…'
     }
 
     if (saveMutation.isPending) {
-      return 'Saving note...'
+      return 'Saving note…'
     }
 
     if (echo) {
-      return 'Reflection ready. Save when it feels right.'
+      return 'Reflection ready to review and save.'
     }
 
     if (audioBlob) {
       return 'Processing complete. Review your reflection below.'
     }
 
-    return 'Press record and speak naturally for 30-120 seconds.'
+    return 'Record for 30–120 seconds. Nothing is saved until you approve it.'
   }, [
     audioBlob,
     echo,
@@ -250,30 +250,52 @@ export default function CapturePage() {
     <div className="pb-14">
       <MainNav current="capture" />
 
-      <main className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 sm:px-8">
-        <section className="fade-up rounded-[2rem] border border-border/70 bg-white/70 px-6 py-10 shadow-sm backdrop-blur sm:px-10">
-          <div className="mx-auto flex max-w-2xl flex-col items-center gap-7 text-center">
-            <h1 className="font-serif text-4xl leading-tight text-foreground sm:text-5xl">
-              Capture a thought, hear it back clearly.
-            </h1>
-            <p className="max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Echo Notes listens first, then reflects what matters so your thinking feels lighter.
-            </p>
+      <main className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <header className="border-b border-border pb-8">
+          <p className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+            <Archive className="h-4 w-4" strokeWidth={1.75} />
+            Durable capture
+          </p>
+          <h1 className="max-w-3xl font-serif text-4xl leading-[1.08] tracking-[-0.025em] sm:text-5xl">
+            Preserve the reasoning behind the decision.
+          </h1>
+          <p className="mt-4 max-w-2xl text-[15px] leading-6 text-muted-foreground">
+            Capture a thought, review the transcript and structured reflection, then
+            choose what becomes part of your knowledge history.
+          </p>
+        </header>
 
+        <section className="fade-up overflow-hidden rounded-2xl border border-border bg-card">
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_320px]">
+            <div className="flex flex-col justify-between p-6 sm:p-8">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-primary">New capture</p>
+                <h2 className="mt-3 font-serif text-3xl leading-tight">Speak naturally. Review before saving.</h2>
+                <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
+                  Echo Notes transcribes your recording and extracts its themes, open
+                  questions, and possible next thoughts.
+                </p>
+              </div>
+              <div className="mt-8 flex items-center gap-2 text-xs text-muted-foreground">
+                <ShieldCheck className="h-4 w-4 text-primary" />
+                Human approval remains the save boundary
+              </div>
+            </div>
+            <div className="flex flex-col items-center justify-center gap-5 border-t border-border bg-[hsl(var(--ghost-blush)/0.45)] p-7 lg:border-l lg:border-t-0">
             <RecordButton
               isRecording={isRecording}
               disabled={!canRecord || isBusy}
               onClick={handleRecordClick}
             />
 
-            <div className="flex flex-wrap items-center justify-center gap-3 text-sm">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-foreground/85 shadow-sm">
+            <div className="flex flex-wrap items-center justify-center gap-2 text-center text-sm">
+              <span className="inline-flex items-center gap-2 rounded-lg bg-card px-3 py-2 text-foreground/85">
                 {(isRecording || isBusy) && (
-                  <FiLoader className="h-4 w-4 animate-spin text-emerald-700" />
+                  <LoaderCircle className="h-4 w-4 animate-spin text-primary" />
                 )}
                 {statusLabel}
               </span>
-              <span className="rounded-full border border-border/70 bg-white/80 px-4 py-2 font-medium tabular-nums text-foreground/85 shadow-sm">
+              <span className="rounded-lg border border-border bg-card px-3 py-2 font-mono text-xs font-medium tabular-nums text-foreground/85">
                 {formatDurationMs(durationMs)}
               </span>
             </div>
@@ -287,7 +309,7 @@ export default function CapturePage() {
             )}
 
             {audioUrl && (
-              <div className="w-full rounded-2xl border border-border/70 bg-white/80 p-4 shadow-sm">
+              <div className="w-full rounded-xl border border-border bg-card p-4">
                 <p className="mb-2 text-left text-sm text-muted-foreground">Recording preview</p>
                 <AudioPlayer src={audioUrl} />
               </div>
@@ -300,7 +322,7 @@ export default function CapturePage() {
                   disabled={!transcription || !echo || isBusy}
                   className="h-11"
                 >
-                  <FiSave className="h-4 w-4" />
+                  <Archive className="h-4 w-4" />
                   Save note
                 </Button>
                 <Button
@@ -309,7 +331,7 @@ export default function CapturePage() {
                   disabled={isBusy}
                   className="h-11"
                 >
-                  <FiRefreshCw className="h-4 w-4" />
+                  <RefreshCw className="h-4 w-4" />
                   Re-record
                 </Button>
                 <Button
@@ -318,11 +340,12 @@ export default function CapturePage() {
                   disabled={isBusy}
                   className="h-11"
                 >
-                  <FiTrash2 className="h-4 w-4" />
+                  <Trash2 className="h-4 w-4" />
                   Discard
                 </Button>
               </div>
             )}
+            </div>
           </div>
         </section>
 
